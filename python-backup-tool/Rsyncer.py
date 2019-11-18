@@ -19,7 +19,7 @@ class Rsyncer():
 
    # def confirm_rsync_connection(self):
 
-    def rsync(self):
+    def rsync_incremental(self):
         os.system(f"rsync -avr -e 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null' --delete {self.source_dir} {self.rsync_user}@{self.destination_ip}:{self.destination}")
 
 if __name__ == "__main__":
