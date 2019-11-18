@@ -1,3 +1,4 @@
-os_dir = "/opt/django_developer_portfolio"
-source =  "/opt/django_developer_portfolio"
-destination = "root@192.168.56.102:/tmp/backups/"
+source_dir =  "/opt/django-developer-portfolio"
+destination_dir = "/tmp/backup/"
+destination_ip = "192.168.56.102"
+rsync_user = "root"
