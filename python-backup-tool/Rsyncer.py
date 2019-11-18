@@ -4,26 +4,27 @@ from .config import *
 
 
 class Rsyncer():
-    def __init__(self, os_dir, source, destination):
-        self.os_dir = os_dir
-        self.source = source
-        self.destination = destination
-
+    def __init__(self, source_dir, destination_dir, destination_ip, rsync_user):
+        self.source_dir = source_dir
+        self.destination = destination_dir
+        self.destination_ip = destination_ip
+        self.rsync_user = rsync_user 
+        
     def confirm_dir_exists(self):
-        if not os.path.exists(self.os_dir):
-            print(f"{self.os_dir} does not exist")
+        if not os.path.exists(self.source_dir):
+            print(f"{self.source_dir} does not exist")
             sys.exit(1)
         else:
-            print(f"Confirmed {self.os_dir} does exist, beginning rsync process...")
+            print(f"Confirmed {self.source_dir} does exist, beginning rsync process...")
 
-    def confirm_rsync_connection(self):
+   # def confirm_rsync_connection(self):
 
     def rsync(self):
-        os.sys(f"rsync -avrz {self.source} {self.destination}")
+        os.sys(f"rsync -avr -e 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null' --delete {self.source_dir} {self.rsync_user}@{self.destination_ip}@{self.destination}")
 
 if __name__ == "__main__":
     process = Rsyncer("/opt/django_developer_portfolio", "/opt/django_developer_portfolio", "/tmp/backup")
-    process.confirm()
+    process.confirm_dir_exists()
 
 '''
 workflow
