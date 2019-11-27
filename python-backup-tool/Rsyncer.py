@@ -1,6 +1,9 @@
 import os
 import sys
 from .config import *
+import logging
+
+logging.basicConfig(level=logging.DEBUG, format="%(asctime)s:%(levelname)s:%(message)s", filename="./logs/rsync.log")
 
 
 class Rsyncer():
@@ -13,9 +16,11 @@ class Rsyncer():
     def confirm_dir_exists(self):
         if not os.path.exists(self.source_dir):
             print(f"{self.source_dir} does not exist")
+            logging.debug(f"{self.source_dir} does not exist")
             sys.exit(1)
         else:
             print(f"Confirmed {self.source_dir} does exist, beginning rsync process...")
+            logging.debug(f"Confirmed {self.source_dir} does exist, beginning rsync process...")
 
    # def confirm_rsync_connection(self):
 
