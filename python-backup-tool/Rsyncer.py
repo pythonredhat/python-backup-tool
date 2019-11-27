@@ -1,6 +1,10 @@
 import os
 import sys
 from .config import *
+import logging
+import time
+
+logging.basicConfig(level=logging.DEBUG, format="%(asctime)s:%(levelname)s:%(message)s", filename="./logs/rsync.log")
 
 
 class Rsyncer():
@@ -13,14 +17,30 @@ class Rsyncer():
     def confirm_dir_exists(self):
         if not os.path.exists(self.source_dir):
             print(f"{self.source_dir} does not exist")
+            logging.debug(f"{self.source_dir} does not exist")
             sys.exit(1)
         else:
             print(f"Confirmed {self.source_dir} does exist, beginning rsync process...")
+            logging.debug(f"Confirmed {self.source_dir} does exist, beginning rsync process...")
 
+   #confirm ssh connection
    # def confirm_rsync_connection(self):
 
     def rsync_incremental(self):
-        os.system(f"rsync -avr -e 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null' --delete {self.source_dir} {self.rsync_user}@{self.destination_ip}:{self.destination}")
+        try:
+            start_time = time.time()
+            os.system(f"rsync -avr -e 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null' --delete {self.source_dir} {self.rsync_user}@{self.destination_ip}:{self.destination}")
+            print("Rsync process completed in %s seconds!" % (time.time() - start_time))
+            logging.debug("Rsync process completed in %s seconds!" % (time.time() - start_time))
+        except Exception as e:
+            logging.error(f"Rsync process failed!")
+            logging.exception(e)
+            print(f"Rsync process failed!")
+            print(e)
+            sys.exit(1)
+
+            
+
 
 if __name__ == "__main__":
     process = Rsyncer("/opt/django_developer_portfolio", "/opt/django_developer_portfolio", "/tmp/backup")
