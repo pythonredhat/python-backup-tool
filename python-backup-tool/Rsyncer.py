@@ -30,7 +30,7 @@ class Rsyncer():
         try:
             start_time = time.time()
             os.system(f"rsync -avr -e 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null' --delete {self.source_dir} {self.rsync_user}@{self.destination_ip}:{self.destination}")
-            print("Rsync process completed!")
+            print("Rsync process completed in %s seconds!") % (time.time() - start_time))
             logging.debug("Rsync process completed in %s seconds!" % (time.time() - start_time))
         except Exception as e:
             logging.error(f"Rsync process failed!")
