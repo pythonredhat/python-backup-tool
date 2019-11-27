@@ -22,10 +22,23 @@ class Rsyncer():
             print(f"Confirmed {self.source_dir} does exist, beginning rsync process...")
             logging.debug(f"Confirmed {self.source_dir} does exist, beginning rsync process...")
 
+   #confirm ssh connection
    # def confirm_rsync_connection(self):
 
     def rsync_incremental(self):
-        os.system(f"rsync -avr -e 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null' --delete {self.source_dir} {self.rsync_user}@{self.destination_ip}:{self.destination}")
+        try:
+            os.system(f"rsync -avr -e 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null' --delete {self.source_dir} {self.rsync_user}@{self.destination_ip}:{self.destination}")
+            print("Rsync process completed!")
+            logging.debug("Rsync process completed!")
+        except Exception as e:
+            logging.error(f"Rsync process failed!")
+            logging.exception(e)
+            print(f"Rsync process failed!")
+            print(e)
+            sys.exit(1)
+
+            
+
 
 if __name__ == "__main__":
     process = Rsyncer("/opt/django_developer_portfolio", "/opt/django_developer_portfolio", "/tmp/backup")
