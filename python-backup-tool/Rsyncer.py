@@ -27,6 +27,7 @@ class Rsyncer():
     def confirm_ssh_connection(self):
         try:
             ssh = paramiko.SSHClient()
+            ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
             ssh.connect(self.destination_ip, 22, self.rsync_user)
             print(f"Connection to {self.destination_ip} worked")
             logging.debug(f"Connection to {self.destination_ip} worked")
