@@ -27,7 +27,7 @@ class Rsyncer():
     def confirm_ssh_connection(self):
         try:
             ssh = paramiko.SSHClient()
-            ssh.connect(self.destination_ip, self.rsync_user)
+            ssh.connect(self.destination_ip, 22, self.rsync_user)
             print(f"Connection to {self.destination_ip} worked")
             logging.debug(f"Connection to {self.destination_ip} worked")
         #except (BadHostKeyException, AuthenticationException, SSHException, socket.error) as e:
