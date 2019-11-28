@@ -30,7 +30,8 @@ class Rsyncer():
             ssh.connect({self.destination_ip}, {self.rsync_user})
             print(f"Connection to {self.destination_ip} worked")
             logging.debug(f"Connection to {self.destination_ip} worked")
-        except (BadHostKeyException, AuthenticationException, SSHException, socket.error) as e:
+        #except (BadHostKeyException, AuthenticationException, SSHException, socket.error) as e:
+        except Exception as e:
             logging.error(f"ssh connection failed!!!")
             logging.exception(e)
             print(f"ssh connection failed!!!!")
