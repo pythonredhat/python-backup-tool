@@ -3,6 +3,7 @@ import sys
 from .config import *
 import logging
 import time
+import paramiko
 
 logging.basicConfig(level=logging.DEBUG, format="%(asctime)s:%(levelname)s:%(message)s", filename="./logs/rsync.log")
 
@@ -23,6 +24,21 @@ class Rsyncer():
             print(f"Confirmed {self.source_dir} does exist, beginning rsync process...")
             logging.debug(f"Confirmed {self.source_dir} does exist, beginning rsync process...")
 
+    def confirm_ssh_connection(self):
+        try:
+            ssh = paramiko.SSHClient()
+            ssh.connect({self.destination_ip}, {self.rsync_user})
+            print(f"Connection to {self.destination_ip} worked")
+            logging.debug(f"Connection to {self.destination_ip} worked")
+            return True
+        except (BadHostKeyException, AuthenticationException, SSHException, socket.error) as e:
+            logging.error(f"ssh connection failed!!!")
+            logging.exception(e)
+            print(f"ssh connection failed!!!!")
+            print(e)
+        finally:
+            ssh.close()
+
    #confirm ssh connection
    # def confirm_rsync_connection(self):
 
@@ -39,7 +55,7 @@ class Rsyncer():
             print(e)
             sys.exit(1)
 
-            
+    
 
 
 if __name__ == "__main__":
