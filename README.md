@@ -9,9 +9,16 @@ need to add to rpm:
     scl enable rh-python36 bash
 ```
 
+-------------------------------------------
 
-### great resource for rpm build with python 3
+# Comebine following two methods to package:
+
+### great resource for rpm build with python 3 with pyinstaller
 ```bash
 https://stackoverflow.com/questions/51640995/python-3-5-create-rpm-with-pyinstaller-generated-executable
 ```
 
+### how pyinstaller works
+```bash
+https://realpython.com/pyinstaller-python/
+```

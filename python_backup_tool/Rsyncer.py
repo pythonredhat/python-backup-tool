@@ -1,6 +1,6 @@
 import os
 import sys
-from .config import *
+#from .config import *
 import logging
 import time
 import paramiko
