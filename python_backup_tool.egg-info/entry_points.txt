@@ -1,3 +1,0 @@
-[console_scripts]
-python_backup_tool = python_backup_tool.__main__:main
-
