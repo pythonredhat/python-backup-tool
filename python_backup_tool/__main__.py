@@ -1,6 +1,6 @@
 from .Rsyncer import Rsyncer
 from .config import *
-import yaml
+import pyyaml
 
 def main():
     with open('/usr/bin/backup/config.yml', 'r') as ymlfile:
