@@ -8,3 +8,10 @@ need to add to rpm:
     sudo yum install rh-python36
     scl enable rh-python36 bash
 ```
+
+
+### great resource for rpm build with python 3
+```bash
+https://stackoverflow.com/questions/51640995/python-3-5-create-rpm-with-pyinstaller-generated-executable
+```
+
