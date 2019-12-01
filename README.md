@@ -22,3 +22,13 @@ https://stackoverflow.com/questions/51640995/python-3-5-create-rpm-with-pyinstal
 ```bash
 https://realpython.com/pyinstaller-python/
 ```
+
+### sources for building rpm specs:
+```bash
+https://adl1995.github.io/building-rpm-packages-with-rpmbuild-koji-and-gitlab-ci.html
+```
+
+### sources for spec files:
+```bash
+https://docs.fedoraproject.org/en-US/packaging-guidelines/RPMMacros/
+```

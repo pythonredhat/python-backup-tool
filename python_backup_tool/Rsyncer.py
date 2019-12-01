@@ -5,7 +5,7 @@ import logging
 import time
 import paramiko
 
-logging.basicConfig(level=logging.DEBUG, format="%(asctime)s:%(levelname)s:%(message)s", filename="./logs/rsync.log")
+logging.basicConfig(level=logging.DEBUG, format="%(asctime)s:%(levelname)s:%(message)s", filename="/var/log/rsync.log")
 
 
 class Rsyncer():
