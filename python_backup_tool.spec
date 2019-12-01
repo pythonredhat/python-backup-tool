@@ -17,7 +17,7 @@ BuildArch: noarch
 Vendor: Turbo Python <office@realpython.com>
 Url: https://github.com/pythonredhat/python-backup-tool
 
-BuildRequires: pyinstaller
+#BuildRequires: pyinstaller
 Requires: rh-python3
 
 %description
