@@ -31,7 +31,7 @@ A Python tool for backing up files.
 
 %install
 mkdir -p /opt/python_backup_tool2
-cp /root/rpmbuild/SOURCES/dist/cli /opt/python_backup_tool/
+cp {%_builddir}/dist/cli /opt/python_backup_tool/
 
 %clean
 rm -rf %{buildroot}
