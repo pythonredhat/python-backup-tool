@@ -1,3 +1,6 @@
 *.pyc
 .vscode/
 *.log
+dist/*
+build/*
+python_backup_tool.egg-info/*
