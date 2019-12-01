@@ -27,11 +27,10 @@ A Python tool for backing up files.
 scl enable rh-python36 bash
 
 %build
-pyinstaller --onefile %{_sourcedir}/cli.py
+/opt/rh/rh-python36/root/usr/bin/pyinstaller --onefile %{_sourcedir}/cli.py
 
 %install
-rm -rf %{buildroot}
-mkdir -p /opt/python_backup_tool
+mkdir -p /opt/python_backup_tool2
 cp %{_sourcedir}/dist/cli /opt/python_backup_tool/
 
 %clean
